@@ -18,6 +18,7 @@
 // limitations under the License. 
 
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Windows.Devices.Bluetooth.Advertisement;
 
 namespace UniversalBeaconLibrary.Beacon
@@ -60,9 +61,11 @@ namespace UniversalBeaconLibrary.Beacon
                     return;
                 }
             }
-
+            
             // Beacon was not yet known - add it to the list.
             var newBeacon = new Beacon(btAdv);
+            Debug.WriteLine(btAdv);
+            if (newBeacon.BeaconType.Equals(Beacon.BeaconTypeEnum.iBeacon))
             BluetoothBeacons.Add(newBeacon);
         }
     }
